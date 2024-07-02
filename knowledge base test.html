@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Skincare Knowledge Base</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* Reset and base styles */
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Roboto', sans-serif;
+        line-height: 1.6;
+        background-color: #f9f9f9;
+        color: #333;
+        margin: 0;
+        padding: 0;
+      }
+      h1,
+      h2,
+      h3 {
+        margin-bottom: 10px;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 10px;
+        color: #4a4a4a;
+      }
+      .container {
+        max-width: 800px;
+        margin: 20px auto;
+        padding: 20px;
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        border-radius: 5px;
+      }
+      header {
+        position: sticky;
+        top: 0;
+        background-color: #fff;
+        z-index: 1000;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 10px 0;
+        text-align: center;
+      }
+      .logo {
+        max-width: 200px;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+        margin-top: 10px;
+      }
+      .nav-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-bottom: 10px;
+      }
+      .nav-link {
+        margin: 0 15px;
+        padding: 8px 12px;
+        cursor: pointer;
+        color: #4a4a4a;
+        text-decoration: none;
+        transition: color 0.3s ease;
+        border-radius: 5px;
+      }
+      .nav-link:hover {
+        background-color: #4a4a4a;
+        color: #fff;
+      }
+      .search-container {
+        text-align: center;
+        margin-bottom: 20px;
+      }
+      .search-container input[type='text'] {
+        padding: 12px;
+        width: 60%;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        font-size: 16px;
+        transition: border-color 0.3s ease;
+      }
+      .search-container input[type='text']:focus {
+        outline: none;
+        border-color: #007bff;
+      }
+      .search-container button {
+        padding: 12px 24px;
+        border: none;
+        background-color: #4a4a4a;
+        color: #fff;
+        cursor: pointer;
+        border-radius: 5px;
+        font-size: 16px;
+        transition: background-color 0.3s ease;
+      }
+      .search-container button:hover {
+        background-color: #4a4a4a;
+      }
+
+      /* Article and modal styles */
+      .category {
+        margin-bottom: 30px;
+        padding-bottom: 20px;
+        border-bottom: 1px solid #ccc;
+      }
+      .article {
+        margin-bottom: 15px;
+        padding: 15px;
+        border: 1px solid #e9ecef;
+        border-radius: 5px;
+        background-color: #fff;
+        transition: box-shadow 0.3s ease;
+        cursor: pointer;
+        animation: fadeIn 0.5s ease-out forwards;
+      }
+      .article:hover {
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      .article h3 {
+        margin-bottom: 10px;
+        color: #c0e04e;
+      }
+      .article p {
+        color: #666;
+        margin-bottom: 5px;
+      }
+      .article p.hidden {
+        display: none;
+      }
+      .toggle-btn {
+        border: none;
+        background-color: transparent;
+        color: #4a4a4a;
+        cursor: pointer;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
+      .toggle-btn:hover {
+        color: #4a4a4a;
+      }
+
+      /* Modal styles */
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        display: none;
+      }
+      .modal-content {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        max-width: 80%;
+        max-height: 80%;
+        overflow: auto;
+        animation: slideIn 0.3s ease-out;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(-50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+        font-size: 24px;
+        color: #aaa;
+        transition: color 0.3s ease;
+      }
+      .close:hover {
+        color: #4a4a4a;
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        .search-container input[type='text'] {
+          width: 80%;
+        }
+      }
+      @media (max-width: 600px) {
+        .search-container input[type='text'] {
+          width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="../Synergy support Logo.png" alt="Company Logo" class="logo" />
+      <h1>Skincare Knowledge Base</h1>
+      <div class="nav-container">
+        <a href="#getting-started" class="nav-link">Getting Started</a>
+        <a href="#product-support" class="nav-link">Product Support</a>
+        <a href="#skin-care-tips" class="nav-link">Skin Care Tips</a>
+        <a href="#faqs" class="nav-link">FAQs</a>
+      </div>
+      <div class="search-container">
+        <input type="text" id="search-input" placeholder="Search..." />
+        <button id="search-button">Search</button>
+      </div>
+    </header>
+    <div class="container">
+      <main>
+        <section class="category" id="getting-started">
+          <h2>Getting Started</h2>
+          <article class="article">
+            <h3>Creating a Skincare Routine</h3>
+            <p>Steps to create an effective skincare routine:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi. Lorem ipsum dolor sit amet, consectetur adipisicing
+              elit. Est earum, laboriosam neque porro mollitia officia et
+              dolorem eius ullam quisquam omnis rem repellat alias atque
+              provident! Officia dolor quas officiis. Lorem ipsum dolor sit amet
+              consectetur adipisicing elit. Natus sapiente autem voluptatum.
+              Saepe, facere? Laborum ad possimus molestias officia dolor maiores
+              quisquam, nesciunt sapiente quis saepe accusantium assumenda.
+              Rerum, qui? Lorem ipsum dolor sit amet consectetur adipisicing
+              elit. Maiores consequatur quia magnam facere tempore nihil, quidem
+              voluptatem ipsa illum optio impedit modi. Officia temporibus
+              quibusdam porro ipsum maiores fugit facere! Lorem ipsum dolor sit
+              amet consectetur adipisicing elit. Voluptatibus veritatis ipsa
+              labore alias numquam officiis accusantium quia perferendis
+              inventore consequatur? Et dolorem iure commodi dicta consectetur
+              reprehenderit, beatae ipsa veniam?Lorem ipsum, dolor sit amet
+              consectetur adipisicing elit. Porro provident maxime pariatur. Hic
+              voluptatum incidunt sapiente cumque asperiores, iste ducimus odit
+              consequatur vel numquam. Sequi, vitae consequuntur. Unde,
+              quibusdam accusamus! Ipsam, laudantium commodi ea voluptates et
+              ab. Fugit amet ea impedit quos fuga doloremque harum reprehenderit
+              distinctio vel illo maxime, aliquam sed iste, nam expedita. Quo
+              delectus veniam incidunt blanditiis. Quia, at praesentium
+              exercitationem consequuntur labore vel illum fuga dicta sint nulla
+              porro, enim assumenda id! Enim quaerat quidem exercitationem fuga
+              maiores suscipit, velit placeat error corporis, eligendi quis
+              porro. Facere fugit incidunt voluptates facilis dolorum itaque
+              quas, adipisci dolore quidem harum, blanditiis mollitia minus? Eos
+              illo pariatur ea sequi nesciunt necessitatibus nobis dolorum, ut
+              laboriosam laudantium, reiciendis aspernatur. Earum! Quis quasi
+              voluptatem fuga, laborum delectus, dignissimos aliquid debitis,
+              totam omnis dolorum quisquam iste cum maxime odio eveniet ipsum
+              neque esse obcaecati consequatur incidunt ab. Adipisci est
+              blanditiis ex enim! Corporis dolorem adipisci amet, est mollitia
+              tenetur blanditiis esse possimus laboriosam aut incidunt repellat
+              hic dolor, placeat nam error magnam cumque, similique veritatis
+              eos autem voluptate dicta! Libero, perferendis quia.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+          <article class="article">
+            <h3>Choosing the Right Products</h3>
+            <p>How to select skincare products for your skin type:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+        </section>
+
+        <section class="category" id="product-support">
+          <h2>Product Support</h2>
+          <article class="article">
+            <h3>Product FAQs</h3>
+            <p>Commonly asked questions about our skincare products:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+          <article class="article">
+            <h3>Troubleshooting Skincare Issues</h3>
+            <p>Steps to troubleshoot common skincare problems:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+        </section>
+
+        <section class="category" id="skin-care-tips">
+          <h2>Skin Care Tips</h2>
+          <article class="article">
+            <h3>Natural Ingredients Benefits</h3>
+            <p>Benefits of using natural ingredients in skincare:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+          <article class="article">
+            <h3>Daily Skincare Routine</h3>
+            <p>Guidelines for a daily skincare routine:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+        </section>
+
+        <section class="category" id="faqs">
+          <h2>FAQs</h2>
+          <article class="article">
+            <h3>General Skincare Questions</h3>
+            <p>Answers to frequently asked questions about skincare:</p>
+            <p class="hidden">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam
+              convallis ut diam sit amet aliquam. Curabitur porta, velit eget
+              consectetur feugiat, urna magna sodales libero, nec molestie dolor
+              mi vel mi.
+            </p>
+            <button class="toggle-btn">Read More</button>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <!-- Modal for detailed instructions -->
+    <div id="modal" class="modal">
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <h2 class="modal-title"></h2>
+        <div class="modal-body"></div>
+      </div>
+    </div>
+
+    <footer>
+      <p>&copy; 2024 Your Skincare Company. All rights reserved.</p>
+    </footer>
+
+    <script>
+      // Smooth scroll to section and adjust for sticky header
+      function scrollToSection(id) {
+        let element = document.getElementById(id);
+        if (element) {
+          let headerHeight = document.querySelector('header').offsetHeight;
+          window.scrollTo({
+            top: element.offsetTop - headerHeight,
+            behavior: 'smooth',
+          });
+        }
+      }
+
+      // Event listeners for navigation links
+      document.querySelectorAll('.nav-link').forEach(function (link) {
+        link.addEventListener('click', function (event) {
+          event.preventDefault();
+          let sectionId = link.getAttribute('href').replace('#', '');
+          scrollToSection(sectionId);
+        });
+      });
+
+      // JavaScript for dynamic search filtering
+      document
+        .getElementById('search-input')
+        .addEventListener('input', function () {
+          let query = this.value.trim().toLowerCase();
+          let articles = document.querySelectorAll('.article');
+
+          articles.forEach(function (article) {
+            let text = article.textContent.toLowerCase();
+            let category = article.closest('.category').id;
+            let content = article
+              .querySelector('.hidden')
+              .textContent.toLowerCase();
+
+            if (
+              text.includes(query) ||
+              content.includes(query) ||
+              category.includes(query)
+            ) {
+              article.style.display = 'block';
+            } else {
+              article.style.display = 'none';
+            }
+          });
+        });
+
+      // JavaScript for toggling content in articles
+      let toggleButtons = document.querySelectorAll('.toggle-btn');
+      toggleButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.stopPropagation(); // Prevent event bubbling to parent article
+          let content = button.previousElementSibling;
+          if (content.classList.contains('hidden')) {
+            content.classList.remove('hidden');
+            button.textContent = 'Show Less';
+          } else {
+            content.classList.add('hidden');
+            button.textContent = 'Read More';
+          }
+        });
+      });
+
+      // JavaScript for modal
+      let modal = document.getElementById('modal');
+      let modalTitle = modal.querySelector('.modal-title');
+      let modalBody = modal.querySelector('.modal-body');
+      let articles = document.querySelectorAll('.article');
+      articles.forEach(function (article) {
+        article.addEventListener('click', function () {
+          modalTitle.textContent = article.querySelector('h3').textContent;
+          modalBody.innerHTML = article.querySelector('.hidden').innerHTML;
+          modal.style.display = 'flex';
+        });
+      });
+
+      // Close the modal when clicking outside of it or on the close button
+      window.addEventListener('click', function (event) {
+        if (event.target == modal) {
+          modal.style.display = 'none';
+        }
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.style.display === 'flex') {
+          modal.style.display = 'none';
+        }
+      });
+
+      modal.querySelector('.close').addEventListener('click', function () {
+        modal.style.display = 'none';
+      });
+
+      // Close modal when 'Show Less' button is clicked
+      let showLessButtons = document.querySelectorAll('.show-less-btn');
+      showLessButtons.forEach(function (button) {
+        button.addEventListener('click', function (event) {
+          event.stopPropagation();
+          modal.style.display = 'flex';
+        });
+      });
+    </script>
+  </body>
+</html>
