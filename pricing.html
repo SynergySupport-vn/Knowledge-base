@@ -54,7 +54,7 @@
     <link href="../images/Favicon.png" rel="synergy-icon" />
   </head>
   <body>
-    <div
+ <div
       data-animation="default"
       data-collapse="medium"
       data-duration="400"
@@ -81,13 +81,23 @@
             role="navigation"
             id="w-node-bc339dbc-2a59-0847-4b81-c02c2ccf17b6-2ccf17b1"
             class="nav-menu w-nav-menu"
+            style="transform: translateY(0px) translateX(0px)"
           >
-            <a href="index.html" class="nav-link first w-nav-link">Trang chủ</a>
-            <a href="about-us.html" class="nav-link w-nav-link">Về chúng tôi</a>
             <a
-              href="pricing.html"
+              href="/"
               aria-current="page"
-              class="nav-link w-nav-link w--current"
+              class="nav-link first w-nav-link w--current"
+              style="max-width: 100%"
+              >Trang chủ</a
+            ><a
+              href="/about-us.html"
+              class="nav-link w-nav-link"
+              style="max-width: 100%"
+              >Về chúng tôi</a
+            ><a
+              href="/pricing.html"
+              class="nav-link w-nav-link"
+              style="max-width: 100%"
               >Giá cả</a
             >
             <div
@@ -95,45 +105,8 @@
               data-delay="0"
               data-w-id="bc339dbc-2a59-0847-4b81-c02c2ccf17bb"
               class="dropdown w-dropdown"
-            >
-              <nav class="dropdown-list w-dropdown-list">
-                <a href="index.html" class="dropdown-link w-dropdown-link"
-                  >Home</a
-                >
-                <a href="home-2" class="dropdown-link w-dropdown-link"
-                  >Home 2</a
-                >
-                <a href="about-us" class="dropdown-link w-dropdown-link"
-                  >About Us</a
-                >
-                <a href="case-list" class="dropdown-link w-dropdown-link"
-                  >Case List</a
-                >
-                <a href="case-grid" class="dropdown-link w-dropdown-link"
-                  >Case Grid</a
-                >
-                <a href="service-static" class="dropdown-link w-dropdown-link"
-                  >Service Static</a
-                >
-                <a
-                  href="pricing"
-                  aria-current="page"
-                  class="dropdown-link w-dropdown-link w--current"
-                  >Pricing</a
-                >
-                <a href="team" class="dropdown-link w-dropdown-link">Team</a>
-                <a href="career" class="dropdown-link w-dropdown-link"
-                  >Careers</a
-                >
-                <a href="blog" class="dropdown-link w-dropdown-link">Blog</a>
-                <a href="contact" class="dropdown-link w-dropdown-link"
-                  >Contact</a
-                >
-                <a href="privacy-policy" class="dropdown-link w-dropdown-link"
-                  >Privacy Policy</a
-                >
-              </nav>
-            </div>
+              style="max-width: 100%"
+            ></div>
           </nav>
           <div
             id="w-node-bc339dbc-2a59-0847-4b81-c02c2ccf17d1-2ccf17b1"
@@ -143,8 +116,7 @@
               href="contact.html"
               data-w-id="6b10522c-890c-deb4-9f16-7ab8eef214c5"
               class="button-primary-3 w-inline-block"
-            >
-              <div class="button-primary-3-hover-line"></div>
+              ><div class="button-primary-3-hover-line"></div>
               <img
                 src="https://assets-global.website-files.com/663c55759f00ae5e351a9894/663c5cd362bc180298fc873f_button-icon-01.svg"
                 loading="eager"
@@ -154,16 +126,44 @@
               <div class="button-text">
                 <div class="button-primary-3-hover-line"></div>
                 <div>Đặt cuộc gọi</div>
-              </div>
-            </a>
+              </div></a
+            >
           </div>
           <div
+            onclick="toggle3dashbutton()"
             id="w-node-bc339dbc-2a59-0847-4b81-c02c2ccf17dd-2ccf17b1"
             class="menu-button w-nav-button"
           >
             <div class="menu-button-icon w-icon-nav-menu"></div>
           </div>
         </div>
+      </div>
+      <div class="w-nav-overlay" data-wf-ignore="" id="w-nav-overlay-0">
+        <nav
+          role="navigation"
+          id="w-node-bc339dbc-2a59-0847-4b81-c02c2ccf17b6-2ccf17b1"
+          class="nav-menu w-nav-menu nav-menu-mobile"
+          style=""
+          data-nav-menu-open=""
+        >
+          <a
+            href="/"
+            aria-current="page"
+            class="nav-link first w-nav-link w--current w--nav-link-open"
+            style="max-width: 100%"
+            >Home</a
+          ><a
+            href="/about-us"
+            class="nav-link w-nav-link w--nav-link-open"
+            style="max-width: 100%"
+            >About Us</a
+          ><a
+            href="/pricing"
+            class="nav-link w-nav-link w--nav-link-open"
+            style="max-width: 100%"
+            >Pricing</a
+          >
+        </nav>
       </div>
     </div>
     <section class="hero-inner">
