@@ -344,7 +344,7 @@ function toggle3dashbutton() {
   if (isExpanded) {
     item_2.style.animation = 'three_dash_button_disappear 0.4s ease';
   } else {
-    item_3.style.height = '6580.48px';
+    item_3.style.height = '2000px';
     item_3.style.display = 'block';
     item_2.style.animation = 'three_dash_button_slidedown 0.4s ease ';
   }
